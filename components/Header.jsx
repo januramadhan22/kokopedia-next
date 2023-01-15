@@ -13,7 +13,7 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-50 h-20 w-full px-10 flex items-center justify-between shadow-md">
+      <div className="sticky top-0 z-50 h-20 w-full px-10 flex items-center justify-between bg-white shadow-md">
         {/* Left Content */}
         <button className="text-3xl font-semibold text-green-500">
           kokopedia

@@ -9,8 +9,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 function Banner() {
   return (
-    <div className="w-full flex justify-center my-10">
-      <div className="absolute z-50 w-10/12 h-72 flex justify-between items-center">
+    <div className=" w-full flex justify-center my-10">
+      <div className="absolute z-40 w-10/12 h-72 flex justify-between items-center">
         <button className="p-2 rounded-full bg-white">
           <IoIosArrowBack />
         </button>
