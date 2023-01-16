@@ -2,7 +2,7 @@ import Banner from "@/components/Card/Banner";
 import Product from "@/components/Card/Product";
 import Header from "@/components/Header";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { BiCategory } from "react-icons/bi";
@@ -64,6 +64,7 @@ export default function Home() {
           {products.map((item) => (
             <Product
               key={item.id}
+              productId={item.id}
               title={item.title}
               price={item.price}
               description={item.description}
