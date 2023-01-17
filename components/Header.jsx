@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HiOutlineSearch, HiShoppingCart } from "react-icons/hi";
 import Login from "./Modal/Login";
+import Link from "next/link";
 
 function Header() {
   const [loginModal, setLoginModal] = useState(false);
@@ -13,16 +14,18 @@ function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-50 h-20 w-full px-10 flex items-center justify-between bg-white shadow-md">
+      <div className="sticky top-0 z-50 h-20 w-full px-10 flex items-center justify-between bg-white shadow-md gap-10">
         {/* Left Content */}
-        <button className="text-3xl font-semibold text-green-500">
-          kokopedia
-        </button>
+        <Link href="/">
+          <button className="text-3xl font-semibold text-green-500">
+            kokopedia
+          </button>
+        </Link>
 
         {/* Center Content */}
         <form
           type="submit"
-          className="w-[450px] flex items-center border rounded-lg text-sm"
+          className="w-full flex items-center border rounded-lg text-sm"
         >
           <div className="w-full  px-3 py-1">
             <input
@@ -56,7 +59,7 @@ function Header() {
 
       {/* Login Modal */}
       {loginModal && (
-        <div className="w-screen h-screen fixed top-0 left-0">
+        <div className="w-screen h-screen z-50 fixed top-0 left-0">
           <div
             onClick={() => setLoginModal(!loginModal)}
             className="overlay"

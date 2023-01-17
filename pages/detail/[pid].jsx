@@ -3,7 +3,15 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Header from "@/components/Header";
 
-import { HiStar } from "react-icons/hi";
+import {
+  HiStar,
+  HiMinus,
+  HiPlus,
+  HiChat,
+  HiHeart,
+  HiShare,
+  HiPencil,
+} from "react-icons/hi";
 import { BsDot } from "react-icons/bs";
 import Information from "@/components/Modal/Information";
 
@@ -14,6 +22,7 @@ function detail() {
   const [detailTabs, setDetailTabs] = useState(true);
   const [infoTabs, setInfoTabs] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
+  const [note, setNote] = useState(false);
 
   const getProduct = async () => {
     await axios
@@ -34,11 +43,21 @@ function detail() {
     <>
       <div className="w-full">
         <Header />
-        <div className="w-full py-12 px-10 flex gap-10">
-          <div>
-            <div className="w-72 h-96 bg-slate-300 rounded-lg"></div>
+        <div className="w-full h-[1000px] py-12 px-16 flex gap-10">
+          {/* Image Content*/}
+          <div className="w-1/3 relative">
+            <div className="fixed w-fit h-fit flex flex-col gap-2">
+              <div className="w-80 h-96 bg-slate-300 rounded-lg"></div>
+              <div className="flex gap-2">
+                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 border-green-400 transition duration-200"></div>
+                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 hover:border-green-400 transition duration-200"></div>
+                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 hover:border-green-400 transition duration-200"></div>
+              </div>
+            </div>
           </div>
-          <div className="w-1/3 flex flex-col gap-3">
+
+          {/* Detail Content */}
+          <div className="w-3/5 flex flex-col gap-3">
             <div className="flex flex-col">
               <h2 className="text-2xl font-semibold text-gray-700">
                 {product.title}
@@ -127,6 +146,86 @@ function detail() {
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Action Form */}
+          <div className="w-1/3 relative">
+            <div className="fixed w-72 h-fit p-4 flex flex-col gap-3 border rounded-lg">
+              <h2 className="text-lg font-semibold text-left">
+                Atur jumlah dan catatan
+              </h2>
+              <div className="w-full py-1 flex items-center gap-2">
+                <form className="w-2/5 p-0.5 flex items-center border rounded-md">
+                  <button className="text-green-400">
+                    <HiMinus />
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="1"
+                    className="w-full text-center  focus:outline-none"
+                  />
+                  <button className="text-green-400">
+                    <HiPlus />
+                  </button>
+                </form>
+                <p>
+                  Stok Total: <strong>999</strong>
+                </p>
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                {note && (
+                  <input
+                    type="text"
+                    placeholder="Contoh: Warna Putih, Size M"
+                    className="w-full px-4 py-2 rounded-lg border focus:border-green-400 focus:outline-none transition-colors ease-linear duration-200"
+                  />
+                )}
+                {note ? (
+                  <button
+                    onClick={() => setNote(!note)}
+                    className="w-fit text-sm font-semibold text-green-500"
+                  >
+                    Batalkan Catatan
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setNote(!note)}
+                    className="w-fit flex items-center gap-1 text-sm font-semibold text-green-500"
+                  >
+                    <HiPencil />
+                    Tambah Catatan
+                  </button>
+                )}
+              </div>
+              <div className="w-full flex justify-between items-center">
+                <p className="text-gray-500">Subtotal</p>
+                <h1 className="text-2xl font-semibold text-gray-700">
+                  Rp99.000
+                </h1>
+              </div>
+              <div className="w-full flex flex-col gap-2">
+                <button className="p-2 bg-green-500 rounded-lg font-semibold text-white hover:bg-green-600 transition-colors duration-200">
+                  + Keranjang
+                </button>
+                <button className="p-2 bg-white border border-green-500 rounded-lg font-semibold text-green-500">
+                  Beli Langsung
+                </button>
+              </div>
+              <div className="w-full flex gap-2 items-center">
+                <button className="w-1/3 flex justify-center items-center gap-1 text-sm font-semibold text-gray-500 hover:text-green-500 transition-colors duration-200">
+                  <HiChat /> Chat
+                </button>
+                <span className="h-6 border-l"></span>
+                <button className="w-1/3 flex justify-center items-center gap-1 text-sm font-semibold text-gray-500 hover:text-green-500 transition-colors duration-200">
+                  <HiHeart /> Wishlist
+                </button>
+                <span className="h-6 border-r"></span>
+                <button className="w-1/3 flex justify-center items-center gap-1 text-sm font-semibold text-gray-500 hover:text-green-500 transition-colors duration-200">
+                  <HiShare />
+                  Share
+                </button>
+              </div>
             </div>
           </div>
         </div>
