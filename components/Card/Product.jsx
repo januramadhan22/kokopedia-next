@@ -35,9 +35,9 @@ function Product({
                 <span className="h-3 mx-1 border-r rounded-md border-gray-400"></span>
                 <p>Terjual {sold}+</p>
               </div>
-              <button onClick={() => setOption(!option)}>
+              {/* <button onClick={() => setOption(!option)}>
                 <SlOptions className="text-sm fill-gray-400" />
-              </button>
+              </button> */}
             </div>
           </div>
         </Link>

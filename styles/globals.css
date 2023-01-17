@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-family: sans-serif;
+}
+
 body.active-modal {
   overflow-y: hidden;
 }
