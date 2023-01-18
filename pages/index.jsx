@@ -13,57 +13,123 @@ import TopCategories from "@/components/Card/TopCategories";
 import FormPulsa from "@/components/Card/FormPulsa";
 import FormListrik from "@/components/Card/FormListrik";
 
-// export async function getServerSideProps() {
-//   const res = await fetch("https://fakestoreapi.com/products");
-//   const data = await res.json();
-//   console.log(data);
+export async function getServerSideProps() {
+  // Get All Products
+  const resProducts = await fetch("https://fakestoreapi.com/products");
+  const dataProducts = await resProducts.json();
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
+  // Get Categories
+  const resCategories = await fetch(
+    "https://fakestoreapi.com/products/categories"
+  );
+  const dataCategories = await resCategories.json();
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
+  // Get Products by Categories
+  const resJewelery = await fetch(
+    "https://fakestoreapi.com/products/category/jewelery"
+  );
+  const getJewelery = await resJewelery.json();
+
+  const resElectronics = await fetch(
+    "https://fakestoreapi.com/products/category/electronics"
+  );
+  const getElectronics = await resElectronics.json();
+
+  const resMensCloth = await fetch(
+    "https://fakestoreapi.com/products/category/men's clothing"
+  );
+  const getMensCloth = await resMensCloth.json();
+
+  const resWomensCloth = await fetch(
+    "https://fakestoreapi.com/products/category/women's clothing"
+  );
+  const getWomensCloth = await resWomensCloth.json();
+
+  return {
+    props: {
+      dataProducts,
+      dataCategories,
+      getJewelery,
+      getElectronics,
+      getMensCloth,
+      getWomensCloth,
+    },
+  };
+}
+
+export default function Home({
+  dataProducts,
+  dataCategories,
+  getJewelery,
+  getElectronics,
+  getMensCloth,
+  getWomensCloth,
+}) {
   const [pulsa, setPulsa] = useState(true);
   const [kuota, setKuota] = useState(false);
   const [listrik, setListrik] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [allProducts, setAllProducts] = useState(true);
+  const [jewelery, setJewelery] = useState(false);
+  const [electronics, setElectronics] = useState(false);
+  const [mensCloth, setMensCloth] = useState(false);
+  const [womensCloth, setWomensCloth] = useState(false);
   const topCategories = [
-    { id: 1, name: "Cincin", gender: "Wanita" },
-    { id: 2, name: "Flat Shoes", gender: "Wanita" },
-    { id: 3, name: "Laptop" },
-    { id: 4, name: "T-Shirt", gender: "Pria" },
+    {
+      id: 1,
+      name: "Cincin",
+      gender: "Wanita",
+      image:
+        "https://images.unsplash.com/photo-1598560917807-1bae44bd2be8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+    },
+    {
+      id: 2,
+      name: "Flat Shoes",
+      gender: "Wanita",
+      image:
+        "https://images.unsplash.com/photo-1604001307862-2d953b875079?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGZsYXQlMjBzaG9lcyUyMHdvbWVufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    },
+    {
+      id: 3,
+      name: "Laptop",
+      image:
+        "https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8bGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    },
+    {
+      id: 4,
+      name: "T-Shirt",
+      gender: "Pria",
+      image:
+        "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=415&q=80",
+    },
   ];
 
-  const getProducts = async () => {
-    await axios
-      .get(`https://fakestoreapi.com/products`)
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        alert("Data Gagal Didapat");
-      });
-  };
+  // CSR Get Data
+  // const getProducts = async () => {
+  //   await axios
+  //     .get(`https://fakestoreapi.com/products`)
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //     })
+  //     .catch((error) => {
+  //       alert("Data Gagal Didapat");
+  //     });
+  // };
 
-  const getCategories = async () => {
-    await axios
-      .get(`https://fakestoreapi.com/products/categories`)
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        alert("Data Gagal Didapat");
-      });
-  };
+  // const getCategories = async () => {
+  //   await axios
+  //     .get(`https://fakestoreapi.com/products/categories`)
+  //     .then((response) => {
+  //       setCategories(response.data);
+  //     })
+  //     .catch((error) => {
+  //       alert("Data Gagal Didapat");
+  //     });
+  // };
 
-  useEffect(() => {
-    getProducts();
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   getProducts();
+  //   getCategories();
+  // }, []);
 
   return (
     <>
@@ -86,6 +152,7 @@ export default function Home() {
                       key={item.id}
                       name={item.name}
                       gender={item.gender}
+                      image={item.image}
                     />
                   ))}
                 </div>
@@ -151,37 +218,88 @@ export default function Home() {
 
             {/* Categories */}
             <div className="w-full flex flex-wrap md:flex-nowrap gap-2 justify-center">
-              <button className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200">
+              <button
+                onClick={() => {
+                  setJewelery(false);
+                  setAllProducts(true);
+                  setElectronics(false);
+                  setMensCloth(false);
+                  setWomensCloth(false);
+                }}
+                className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200"
+              >
                 <p className="flex items-center gap-1 text-gray-500">
                   <BiCategory className="text-lg text-green-500" />
                   All Categories
                 </p>
               </button>
-              {categories.map((item) => (
-                <button
-                  key={item}
-                  className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200"
-                >
+              {dataCategories.map((item) => (
+                <div key={item}>
                   {item == "electronics" ? (
-                    <p className="flex items-center gap-1 text-gray-500">
-                      <CgSmartHomeRefrigerator className="text-lg text-blue-500" />
-                      {item}
-                    </p>
+                    <button
+                      onClick={() => {
+                        setAllProducts(false);
+                        setJewelery(false);
+                        setElectronics(true);
+                        setMensCloth(false);
+                        setWomensCloth(false);
+                      }}
+                      className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200"
+                    >
+                      <p className="flex items-center gap-1 text-gray-500">
+                        <CgSmartHomeRefrigerator className="text-lg text-blue-500" />
+                        {item}
+                      </p>
+                    </button>
                   ) : item == "jewelery" ? (
-                    <p className="flex items-center gap-1 text-gray-500">
-                      <GiDoorRingHandle className="text-lg text-yellow-500" />
-                      {item}
-                    </p>
+                    <button className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200">
+                      <p
+                        onClick={() => {
+                          setAllProducts(false);
+                          setJewelery(true);
+                          setElectronics(false);
+                          setMensCloth(false);
+                          setWomensCloth(false);
+                        }}
+                        className="flex items-center gap-1 text-gray-500"
+                      >
+                        <GiDoorRingHandle className="text-lg text-yellow-500" />
+                        {item}
+                      </p>
+                    </button>
                   ) : item == "men's clothing" ? (
-                    <p className="flex items-center gap-1 text-gray-500">
-                      <FaTshirt className="text-lg text-green-500" /> {item}
-                    </p>
+                    <button
+                      onClick={() => {
+                        setAllProducts(false);
+                        setJewelery(false);
+                        setElectronics(false);
+                        setMensCloth(true);
+                        setWomensCloth(false);
+                      }}
+                      className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200"
+                    >
+                      <p className="flex items-center gap-1 text-gray-500">
+                        <FaTshirt className="text-lg text-green-500" /> {item}
+                      </p>
+                    </button>
                   ) : (
-                    <p className="flex items-center gap-1 text-gray-500">
-                      <GiLargeDress className="text-lg text-pink-500" /> {item}
-                    </p>
+                    <button
+                      onClick={() => {
+                        setAllProducts(false);
+                        setJewelery(false);
+                        setElectronics(false);
+                        setMensCloth(false);
+                        setWomensCloth(true);
+                      }}
+                      className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200"
+                    >
+                      <p className="flex items-center gap-1 text-gray-500">
+                        <GiLargeDress className="text-lg text-pink-500" />{" "}
+                        {item}
+                      </p>
+                    </button>
                   )}
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -189,18 +307,70 @@ export default function Home() {
 
         {/* Product List */}
         <div className="w-full px-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {products.map((item) => (
-            <Product
-              key={item.id}
-              productId={item.id}
-              title={item.title}
-              price={item.price}
-              description={item.description}
-              image={item.image}
-              rating={item.rating.rate}
-              sold={item.rating.count}
-            />
-          ))}
+          {allProducts
+            ? dataProducts.map((item) => (
+                <Product
+                  key={item.id}
+                  productId={item.id}
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  rating={item.rating.rate}
+                  sold={item.rating.count}
+                />
+              ))
+            : jewelery
+            ? getJewelery.map((item) => (
+                <Product
+                  key={item.id}
+                  productId={item.id}
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  rating={item.rating.rate}
+                  sold={item.rating.count}
+                />
+              ))
+            : electronics
+            ? getElectronics.map((item) => (
+                <Product
+                  key={item.id}
+                  productId={item.id}
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  rating={item.rating.rate}
+                  sold={item.rating.count}
+                />
+              ))
+            : mensCloth
+            ? getMensCloth.map((item) => (
+                <Product
+                  key={item.id}
+                  productId={item.id}
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  rating={item.rating.rate}
+                  sold={item.rating.count}
+                />
+              ))
+            : getWomensCloth.map((item) => (
+                <Product
+                  key={item.id}
+                  productId={item.id}
+                  title={item.title}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  rating={item.rating.rate}
+                  sold={item.rating.count}
+                />
+              ))}
         </div>
       </div>
     </>
