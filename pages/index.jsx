@@ -72,11 +72,11 @@ export default function Home() {
         {/* <Banner /> */}
 
         {/* Categories Content */}
-        <div className="w-full px-14 my-7 ">
+        <div className="w-full md:px-10 lg:px-14 my-7 ">
           <div className="w-full p-4 flex flex-col items-center gap-6 border rounded-xl shadow-md bg-white">
             {/* Top Categories */}
-            <div className="w-full flex gap-2">
-              <div className="w-1/2 h-full flex flex-col gap-4">
+            <div className="w-full flex flex-col lg:flex-row md:gap-4 lg:gap-2">
+              <div className="w-full lg:w-1/2 h-full flex flex-col gap-4">
                 <h3 className="text-xl font-semibold text-gray-700">
                   Kategori Terpopuler
                 </h3>
@@ -92,7 +92,7 @@ export default function Home() {
               </div>
 
               {/* TopUp & Tagian */}
-              <div className="w-1/2 h-full flex flex-col gap-4">
+              <div className="w-full lg:w-1/2 h-full flex flex-col gap-4">
                 <h3 className="text-xl font-semibold text-gray-700">
                   Top Up & Tagihan
                 </h3>
@@ -150,7 +150,7 @@ export default function Home() {
             </div>
 
             {/* Categories */}
-            <div className="w-full flex gap-2 justify-center">
+            <div className="w-full flex flex-wrap md:flex-nowrap gap-2 justify-center">
               <button className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200">
                 <p className="flex items-center gap-1 text-gray-500">
                   <BiCategory className="text-lg text-green-500" />
