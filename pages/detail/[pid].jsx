@@ -14,8 +14,25 @@ import {
 } from "react-icons/hi";
 import { BsDot } from "react-icons/bs";
 import Information from "@/components/Modal/Information";
+import Image from "next/image";
 
-function detail() {
+// export async function getServerSideDetail() {
+//   const router = useRouter();
+//   const { pid } = router.query;
+
+//   const resDetailProduct = await fetch(
+//     `https://fakestoreapi.com/products/${pid}`
+//   );
+//   const detailProduct = await resDetailProduct.json();
+
+//   return {
+//     props: {
+//       detailProduct,
+//     },
+//   };
+// }
+
+function detail({ detailProduct }) {
   const router = useRouter();
   const { pid } = router.query;
   const [product, setProduct] = useState({});
@@ -47,11 +64,21 @@ function detail() {
           {/* Image Content*/}
           <div className="w-1/3 relative">
             <div className="fixed w-fit h-fit flex flex-col gap-2">
-              <div className="w-80 h-96 bg-slate-300 rounded-lg"></div>
+              <div className="w-80 h-96 p-6 flex items-center rounded-lg">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full"
+                />
+              </div>
               <div className="flex gap-2">
-                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 border-green-400 transition duration-200"></div>
-                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 hover:border-green-400 transition duration-200"></div>
-                <div className="w-16 h-16 bg-slate-300 rounded-md border-2 hover:border-green-400 transition duration-200"></div>
+                <div className="w-16 h-16 p-0.5 flex items-center justify-center cursor-pointer rounded-md border-2 border-green-400 transition duration-200">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="max-h-full"
+                  />
+                </div>
               </div>
             </div>
           </div>
