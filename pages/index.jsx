@@ -153,7 +153,7 @@ export default function Home() {
             <div className="w-full flex gap-2 justify-center">
               <button className="px-4 py-1.5 border rounded-xl shadow-md hover:border-green-500 active:scale-95 transition-colors ease-linear duration-200">
                 <p className="flex items-center gap-1 text-gray-500">
-                  <BiCategory />
+                  <BiCategory className="text-lg text-green-500" />
                   All Categories
                 </p>
               </button>
@@ -164,19 +164,21 @@ export default function Home() {
                 >
                   {item == "electronics" ? (
                     <p className="flex items-center gap-1 text-gray-500">
-                      <CgSmartHomeRefrigerator /> {item}
+                      <CgSmartHomeRefrigerator className="text-lg text-blue-500" />
+                      {item}
                     </p>
                   ) : item == "jewelery" ? (
                     <p className="flex items-center gap-1 text-gray-500">
-                      <GiDoorRingHandle /> {item}
+                      <GiDoorRingHandle className="text-lg text-yellow-500" />
+                      {item}
                     </p>
                   ) : item == "men's clothing" ? (
                     <p className="flex items-center gap-1 text-gray-500">
-                      <FaTshirt /> {item}
+                      <FaTshirt className="text-lg text-green-500" /> {item}
                     </p>
                   ) : (
                     <p className="flex items-center gap-1 text-gray-500">
-                      <GiLargeDress /> {item}
+                      <GiLargeDress className="text-lg text-pink-500" /> {item}
                     </p>
                   )}
                 </button>
