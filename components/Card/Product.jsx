@@ -19,12 +19,16 @@ function Product({
     <>
       <div className="relative my-10 flex justify-center gap-1 bg-white ">
         <Link href={`/detail/${productId}`}>
-          <div className="w-48 h-auto flex flex-col gap-2 rounded-lg border hover:scale-105 cursor-pointer hover:z-30 hover:border-green-400 transition ease-linear duration-200 shadow-md bg-white">
-            {/* <Image src={image} className="rounded-t-lg" /> */}
+          <div className="w-48 max-h-72 flex flex-col gap-2 rounded-lg border hover:scale-105 cursor-pointer hover:z-30 hover:border-green-400 transition ease-linear duration-200 shadow-md bg-white">
+            <div className="w-full h-1/2 p-2 flex justify-center">
+              <img src={image} className="rounded-t-lg h-28" />
+            </div>
             <div className="w-full flex flex-col gap-2 px-2">
-              <p className="text-sm font-medium text-gray-700">{title}</p>
-              <p className="text-sm text-justify flex-wrap text-gray-500">
-                {description.substring(0, 60) + "..."}
+              <p className="text-sm font-semibold text-gray-700 truncate">
+                {title}
+              </p>
+              <p className="text-sm text-justify flex-wrap text-gray-500 truncate">
+                {description}
               </p>
               <h3 className="text-lg font-semibold text-gray-800">$ {price}</h3>
             </div>
