@@ -21,7 +21,12 @@ function Product({
         <Link href={`/detail/${productId}`}>
           <div className="w-48 max-h-72 flex flex-col gap-2 rounded-lg border hover:scale-105 cursor-pointer hover:z-30 hover:border-green-400 transition ease-linear duration-200 shadow-md bg-white">
             <div className="w-full h-1/2 p-2 flex justify-center">
-              <img src={image} className="rounded-t-lg h-28" />
+              <img
+                src={image}
+                // height={112}
+                // width={72}
+                className="rounded-t-lg h-28"
+              />
             </div>
             <div className="w-full flex flex-col gap-2 px-2">
               <p className="text-sm font-semibold text-gray-700 truncate">

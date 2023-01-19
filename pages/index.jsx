@@ -12,6 +12,7 @@ import { GiDoorRingHandle, GiLargeDress } from "react-icons/gi";
 import TopCategories from "@/components/Card/TopCategories";
 import FormPulsa from "@/components/Card/FormPulsa";
 import FormListrik from "@/components/Card/FormListrik";
+import Profile from "./Profile";
 
 export async function getServerSideProps() {
   // Get All Products
@@ -359,7 +360,8 @@ export default function Home({
                   sold={item.rating.count}
                 />
               ))
-            : getWomensCloth.map((item) => (
+            : womensCloth &&
+              getWomensCloth.map((item) => (
                 <Product
                   key={item.id}
                   productId={item.id}
@@ -373,6 +375,8 @@ export default function Home({
               ))}
         </div>
       </div>
+
+      <Profile />
     </>
   );
 }

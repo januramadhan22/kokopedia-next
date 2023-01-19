@@ -48,7 +48,7 @@ function detail({ detailProduct }) {
         setProduct(response.data);
       })
       .catch((error) => {
-        alert("Data Gagal Didapat");
+        alert(error);
       });
   };
 
@@ -68,7 +68,7 @@ function detail({ detailProduct }) {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full"
+                  className="w-full max-h-72"
                 />
               </div>
               <div className="flex gap-2">
@@ -183,7 +183,7 @@ function detail({ detailProduct }) {
                 Atur jumlah dan catatan
               </h2>
               <div className="w-full py-1 flex items-center gap-2">
-                <form className="w-2/5 p-0.5 flex items-center border rounded-md">
+                <div className="w-2/5 p-0.5 flex items-center border rounded-md">
                   <button className="text-green-400">
                     <HiMinus />
                   </button>
@@ -195,7 +195,7 @@ function detail({ detailProduct }) {
                   <button className="text-green-400">
                     <HiPlus />
                   </button>
-                </form>
+                </div>
                 <p>
                   Stok Total: <strong>999</strong>
                 </p>
