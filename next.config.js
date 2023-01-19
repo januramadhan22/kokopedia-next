@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["https://fakestoreapi.com", "https://unsplash.com"],
+    domains: [
+      "https://fakestoreapi.com",
+      "https://unsplash.com",
+      "https://images.tokopedia.net",
+    ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
 };
 module.exports = nextConfig;
