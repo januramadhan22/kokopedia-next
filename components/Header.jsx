@@ -27,7 +27,7 @@ function Header() {
           type="submit"
           className="w-full flex items-center border rounded-lg text-sm"
         >
-          <div className="w-full  px-3 py-1">
+          <div className="w-full px-3 py-1">
             <input
               type="text"
               placeholder="Cari di Kokopedia"
