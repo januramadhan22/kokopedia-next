@@ -2,12 +2,34 @@ import React, { useState } from "react";
 import { TfiUser } from "react-icons/tfi";
 import { HiOutlineSearch, HiOutlineLocationMarker } from "react-icons/hi";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { FcTwoSmartphones } from "react-icons/fc";
+import BuyHistory from "@/components/Card/BuyHistory";
 
 function Profile() {
   const [bio, setBio] = useState(true);
   const [alamat, setAlamat] = useState(false);
   const [riwayat, setRiwayat] = useState(false);
   const [listProducts, setListProducts] = useState(false);
+
+  const listProductsType = [
+    { category: "Semua Produk", type: null },
+    {
+      category: "Belanja",
+      type: ["Fashion", "Elektronik", "Ibu & Bayi", "dan lainnya"],
+    },
+    {
+      category: "Top-UP & Tagihan",
+      type: ["Pulsa", "Tagihan Listrik", "Donasi", "dan lainnya"],
+    },
+    {
+      category: "Travel & Entertainment",
+      type: ["Tiket Pesawat", "Hotel", "dan lainnya"],
+    },
+    {
+      category: "Keuangan",
+      type: ["Emas", "Asuransi", "Reksa Dana", "dan lainnya"],
+    },
+  ];
 
   const transactions = [
     {
@@ -29,26 +51,6 @@ function Profile() {
       transaction_id: "IVR/20220312/XXII/III/1081578077",
       price: 99500,
       status: "Menunggu Pembayaran",
-    },
-  ];
-
-  const listProductsType = [
-    { category: "Semua Produk", type: null },
-    {
-      category: "Belanja",
-      type: ["Fashion", "Elektronik", "Ibu & Bayi", "dan lainnya"],
-    },
-    {
-      category: "Top-UP & Tagihan",
-      type: ["Pulsa", "Tagihan Listrik", "Donasi", "dan lainnya"],
-    },
-    {
-      category: "Travel & Entertainment",
-      type: ["Tiket Pesawat", "Hotel", "dan lainnya"],
-    },
-    {
-      category: "Keuangan",
-      type: ["Emas", "Asuransi", "Reksa Dana", "dan lainnya"],
     },
   ];
 
@@ -295,8 +297,19 @@ function Profile() {
                     Semua Alamat
                   </button>
                 </div>
-                <div className="w-full py-3 px-6 flex items-center border border-green-500 bg-green-50 rounded-xl shadow-lg">
-                  Riwayat
+                <div className="w-full flex flex-col gap-4">
+                  {transactions.map((item) => (
+                    <BuyHistory
+                      key={item.id}
+                      product={item.product}
+                      phone={item.phone_number}
+                      provider={item.provider}
+                      date={item.date}
+                      transaction_id={item.transaction_id}
+                      price={item.price}
+                      status={item.status}
+                    />
+                  ))}
                 </div>
               </div>
             )
