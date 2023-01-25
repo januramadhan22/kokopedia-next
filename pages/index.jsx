@@ -12,7 +12,6 @@ import { GiDoorRingHandle, GiLargeDress } from "react-icons/gi";
 import TopCategories from "@/components/Card/TopCategories";
 import FormPulsa from "@/components/Card/FormPulsa";
 import FormListrik from "@/components/Card/FormListrik";
-import Profile from "./Profile";
 
 export async function getServerSideProps() {
   // Get All Products
@@ -375,8 +374,6 @@ export default function Home({
               ))}
         </div>
       </div>
-
-      <Profile />
     </>
   );
 }
